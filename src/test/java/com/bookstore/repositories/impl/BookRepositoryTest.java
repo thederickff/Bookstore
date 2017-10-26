@@ -49,6 +49,8 @@ public class BookRepositoryTest {
         System.out.println("create");
         Book book = new Book();
         book.setName("test");
+        book.setDescription("descr");
+        book.setPrice(23);
         IBookRepository instance = new BookRepository();
         instance.create(book);
         

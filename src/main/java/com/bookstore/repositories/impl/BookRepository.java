@@ -12,6 +12,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,21 +38,36 @@ public class BookRepository implements IBookRepository {
 
     @Override
     public void create(Book book) {
-        File file = new File("/home/derickfelix/.bookstore/books.data");
-
         try {
-            FileReader fileReader = new FileReader(file);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-            
-            while (bufferedReader.ready()) {
-                System.out.println("ok");
-            }
 
+            String separator = ";";
+            long n = 0;
+            FileReader fileReader = new FileReader("/home/derickfelix/.bookstore/books.data");
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            Collection<String> log = new HashSet<>();
+
+            while (bufferedReader.ready()) {
+                log.add(bufferedReader.readLine());
+            }
             
+            PrintWriter writer = new PrintWriter("/home/derickfelix/.bookstore/books.data");
+            
+            for (String s : log) {
+                writer.print(s);
+                writer.println();
+                n++;
+            }
+            book.setId(n);
+            writer.print(book.getId() + separator);
+            writer.print(book.getName()+ separator);
+            writer.print(book.getDescription()+ separator);
+            writer.print(book.getPrice()+ separator);
+
         } catch (FileNotFoundException ex) {
-            System.out.println("File error:" + ex);
+            System.out.println("Error: " + ex);
         } catch (IOException ex) {
-            System.out.println("IO error:" + ex);
+            System.out.println("IOError: " + ex);
         }
     }
 
