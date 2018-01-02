@@ -5,12 +5,12 @@ package com.bookstore.models;
  * @Date: Jan 2, 2018
  * @author Derick Felix
  */
-public class Role {
+public class RoleModel {
     
     private Integer ID;
     private String description;
     private boolean granted;
-    private User user;
+    private UserModel user;
 
     public Integer getID() {
         return ID;
@@ -36,11 +36,11 @@ public class Role {
         this.granted = granted;
     }
 
-    public User getUser() {
+    public UserModel getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserModel user) {
         this.user = user;
     }
  

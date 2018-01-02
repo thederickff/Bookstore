@@ -1,8 +1,8 @@
 /* * Open Source Code. * */
 package com.bookstore.repositories;
 
-import com.bookstore.models.Role;
-import com.bookstore.models.User;
+import com.bookstore.models.RoleModel;
+import com.bookstore.models.UserModel;
 import java.util.List;
 
 /**
@@ -16,7 +16,7 @@ public interface RoleRepository {
      *
      * @param role the role bean to be added
      */
-    public void create(Role role);
+    public void create(RoleModel role);
 
     /**
      * Finds all the roles of a specific user.
@@ -24,7 +24,7 @@ public interface RoleRepository {
      * @param user the user desired
      * @return the list of roles of the user
      */
-    public List<Role> byUser(User user);
+    public List<RoleModel> byUser(UserModel user);
 
     /**
      * Deletes the roles of a specified user.
@@ -32,5 +32,5 @@ public interface RoleRepository {
      * @param user the desired user
      * @param roles the list of roles to be deleted
      */
-    public void delete(User user, List<Role> roles);
+    public void delete(UserModel user, List<RoleModel> roles);
 }

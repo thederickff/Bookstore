@@ -6,7 +6,7 @@ package com.bookstore.models;
  * @author derickfelix
  * @Date 12/30/17
  */
-public class User {
+public class UserModel {
     
     private int id;
     private String name;

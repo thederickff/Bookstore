@@ -1,7 +1,7 @@
 /** Open Source code * */
 package com.bookstore.repositories;
 
-import com.bookstore.models.User;
+import com.bookstore.models.UserModel;
 import java.util.List;
 
 /**
@@ -16,14 +16,14 @@ public interface UserRepository {
      *
      * @return a List of users
      */
-    public List<User> all();
+    public List<UserModel> all();
 
     /**
      * Add a new user to the storage
      *
      * @param user the user bean to be added
      */
-    public void add(User user);
+    public void add(UserModel user);
 
     /**
      * Finds a user by specifying its id
@@ -31,13 +31,13 @@ public interface UserRepository {
      * @param id the id of the user
      * @return the user that matches with the id specified
      */
-    public User find(int id);
+    public UserModel find(int id);
 
     /**
      * Delete a user
      *
      * @param user the user to be deleted
      */
-    public void delete(User user);
+    public void delete(UserModel user);
 
 }

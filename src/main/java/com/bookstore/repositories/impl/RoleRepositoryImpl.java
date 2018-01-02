@@ -1,8 +1,8 @@
 /* * Open Source Code. * */
 package com.bookstore.repositories.impl;
 
-import com.bookstore.models.Role;
-import com.bookstore.models.User;
+import com.bookstore.models.RoleModel;
+import com.bookstore.models.UserModel;
 import com.bookstore.repositories.RoleRepository;
 import com.bookstore.utilities.DirectoryUtility;
 import com.bookstore.utilities.FileUtility;
@@ -22,7 +22,7 @@ public class RoleRepositoryImpl implements RoleRepository {
     }
 
     @Override
-    public void create(Role role) {
+    public void create(RoleModel role) {
         List<String> file = FileUtility.read(path);
         
         file.add(toLine(role));
@@ -31,13 +31,13 @@ public class RoleRepositoryImpl implements RoleRepository {
     }
 
     @Override
-    public List<Role> byUser(User user) {
+    public List<RoleModel> byUser(UserModel user) {
         List<String> file = FileUtility.read(path);
         
-        List<Role> roles = new ArrayList<>();
+        List<RoleModel> roles = new ArrayList<>();
         
         for (String line : file) {
-            Role role = toRole(line);
+            RoleModel role = toRole(line);
             
             if (role.getUser().getId() == user.getId())
             {
@@ -49,11 +49,11 @@ public class RoleRepositoryImpl implements RoleRepository {
     }
 
     @Override
-    public void delete(User user, List<Role> roles) {
+    public void delete(UserModel user, List<RoleModel> roles) {
         List<String> file = FileUtility.read(path);
         
         for (String line : file) {
-            Role role = toRole(line);
+            RoleModel role = toRole(line);
             
             if (role.getUser().getId() == user.getId())
             {
@@ -64,7 +64,7 @@ public class RoleRepositoryImpl implements RoleRepository {
         FileUtility.write(file, path);
     }
 
-    private String toLine(Role role)
+    private String toLine(RoleModel role)
     {
         List<String> fields = new ArrayList<>();
         
@@ -82,13 +82,13 @@ public class RoleRepositoryImpl implements RoleRepository {
         return line;
     }
     
-    private Role toRole(String line)
+    private RoleModel toRole(String line)
     {
         String[] tokens = line.split(FileUtility.stdSeparator());
            
-        Role role = new Role();
+        RoleModel role = new RoleModel();
         role.setID(Integer.parseInt(tokens[0]));
-        User user = new User();
+        UserModel user = new UserModel();
         user.setId(Integer.parseInt(tokens[1]));
         role.setUser(user);
         role.setGranted(Boolean.parseBoolean(tokens[2]));

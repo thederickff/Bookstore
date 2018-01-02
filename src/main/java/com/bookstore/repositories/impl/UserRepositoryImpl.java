@@ -1,7 +1,7 @@
 /** Open Source code **/
 package com.bookstore.repositories.impl;
 
-import com.bookstore.models.User;
+import com.bookstore.models.UserModel;
 import com.bookstore.repositories.UserRepository;
 import com.bookstore.utilities.DirectoryUtility;
 import com.bookstore.utilities.FileUtility;
@@ -16,7 +16,7 @@ import java.util.List;
 public class UserRepositoryImpl implements UserRepository {
 
     private final String path;
-    private List<User> users;
+    private List<UserModel> users;
     
     public UserRepositoryImpl()
     {
@@ -24,7 +24,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
     
     @Override
-    public List<User> all()
+    public List<UserModel> all()
     {
         List<String> file = FileUtility.read(path);
         
@@ -40,7 +40,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public void add(User user) {
+    public void add(UserModel user) {
         List<String> file = FileUtility.read(path);
         
         file.add(toLine(user));
@@ -49,12 +49,12 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public User find(int id) {
+    public UserModel find(int id) {
         List<String> file = FileUtility.read(path);
         
         for (String line : file)
         {
-            User user = toUser(line);
+            UserModel user = toUser(line);
             
             if (user.getId() == id)
                 return user;
@@ -64,7 +64,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public void delete(User user) {
+    public void delete(UserModel user) {
         List<String> file = FileUtility.read(path);
         
         for (String line : file)
@@ -78,7 +78,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
     
     
-    private String toLine(User user)
+    private String toLine(UserModel user)
     {
         List<String> fields = new ArrayList<>();
         
@@ -97,11 +97,11 @@ public class UserRepositoryImpl implements UserRepository {
         return line;
     }
     
-    private User toUser(String line)
+    private UserModel toUser(String line)
     {
         String[] tokens = line.split(FileUtility.stdSeparator());
         
-        User user = new User();
+        UserModel user = new UserModel();
         user.setId(Integer.parseInt(tokens[0]));
         user.setName(tokens[1]);
         user.setEmail(tokens[2]);

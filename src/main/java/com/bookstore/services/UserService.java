@@ -1,7 +1,7 @@
 /** Open Source code **/
 package com.bookstore.services;
 
-import com.bookstore.models.User;
+import com.bookstore.models.UserModel;
 import com.bookstore.repositories.UserRepository;
 import java.util.List;
 
@@ -19,22 +19,22 @@ public class UserService {
         this.repository = repository;
     }
     
-    public List<User> all()
+    public List<UserModel> all()
     {
         return repository.all();
     }
     
-    public void add(User user)
+    public void add(UserModel user)
     {
         repository.add(user);
     }
     
-    public User find(int id)
+    public UserModel find(int id)
     {
         return repository.find(id);
     }
     
-    public void delete(User user)
+    public void delete(UserModel user)
     {
         repository.delete(user);
     }
