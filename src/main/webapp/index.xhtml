@@ -1,152 +1,19 @@
 <ui:composition template="/WEB-INF/layouts/app.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+                xmlns:p="http://primefaces.org/ui">
 
-    <ui:define name="title">Bookstore - Home</ui:define>
+    <ui:define name="title">Login Page</ui:define>
 
     <ui:define name="content">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".book">Add a new book</button>
-                        </div>
-                        <div class="panel-body">
-                            <h3 class="sub-header">List - Books</h3>
-                            <div class="table-responsive">
-
-                                <h:dataTable value="#{bookController.books}" var="book" styleClass="table table-hover">
-                                    <h:column>
-                                        <f:facet name="header">Name</f:facet>
-                                            #{book.name}
-                                    </h:column>
-                                    <h:column>
-                                        <f:facet name="header">Description</f:facet>
-                                            #{book.description}
-                                    </h:column>
-                                    <h:column>
-                                        <f:facet name="header">Price</f:facet>
-                                            #{book.price}
-                                    </h:column>
-                                    <h:column>
-                                        <f:facet name="header">Action</f:facet>
-                                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target=".book#{book.id}">Edit</button>
-                                        |
-                                        <h:commandButton value="Delete" action="#{bookController.remove(book)}" styleClass="btn btn-danger"/>
-
-                                        <!-- Modal -->
-                                        <div class="modal book#{book.id} fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&#215;</span></button>
-                                                        <h4 class="modal-title" id="myModalLabel">Edit #{book.name}</h4>
-                                                    </div>
-                                                    <h:form>
-                                                        <div class="modal-body">
-
-                                                            <div class="row">
-
-                                                                <!-- Book name input -->
-                                                                <div class="form-group col-md-12">
-                                                                    <h:outputLabel for="name" styleClass="control-label">
-                                                                        <h:outputText value="Name"/>
-                                                                    </h:outputLabel>
-                                                                    <h:inputText id="name" value="#{book.name}" a:placeholder="book name" styleClass="form-control" />
-                                                                </div>
-                                                                <!-- Book description input -->
-                                                                <div class="form-group col-md-12">
-                                                                    <h:outputLabel for="description" styleClass="control-label">
-                                                                        <h:outputText value="Description"/>
-                                                                    </h:outputLabel>
-                                                                    <h:inputText id="description" value="#{book.description}" a:placeholder="book description" styleClass="form-control" />
-                                                                </div>
-                                                                <!-- Book price input -->
-                                                                <div class="form-group col-md-12">
-                                                                    <h:outputLabel for="price" styleClass="control-label">
-                                                                        <h:outputText value="Price"/>
-                                                                    </h:outputLabel>
-                                                                    <h:inputText id="price" value="#{book.price}" a:placeholder="book price" styleClass="form-control" />
-                                                                </div>
-
-                                                                <!-- Book description input -->
-                                                                <div class="form-group col-md-12">
-
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                            <h:commandButton value="Save changes" styleClass="btn btn-primary" action="#{bookController.edit(book)}" />
-                                                        </div>
-                                                    </h:form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </h:column>
-                                </h:dataTable>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <!-- Modal -->
-        <div class="modal book fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&#215;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Add a new book</h4>
-                    </div>
-                    <h:form>
-                        <div class="modal-body">
-
-                            <div class="row">
-
-                                <!-- Book name input -->
-                                <div class="form-group col-md-12">
-                                    <h:outputLabel for="name" styleClass="control-label">
-                                        <h:outputText value="Name"/>
-                                    </h:outputLabel>
-                                    <h:inputText id="name" value="#{bookController.book.name}" a:placeholder="book name" styleClass="form-control" />
-                                </div>
-                                <!-- Book description input -->
-                                <div class="form-group col-md-12">
-                                    <h:outputLabel for="description" styleClass="control-label">
-                                        <h:outputText value="Description"/>
-                                    </h:outputLabel>
-                                    <h:inputText id="description" value="#{bookController.book.description}" a:placeholder="book description" styleClass="form-control" />
-                                </div>
-                                <!-- Book price input -->
-                                <div class="form-group col-md-12">
-                                    <h:outputLabel for="price" styleClass="control-label">
-                                        <h:outputText value="Price"/>
-                                    </h:outputLabel>
-                                    <h:inputText id="price" value="#{bookController.book.price}" a:placeholder="book price" styleClass="form-control" />
-                                </div>
-
-                                <!-- Book description input -->
-                                <div class="form-group col-md-12">
-
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <h:commandButton value="Add a new book" styleClass="btn btn-primary" action="#{bookController.add}" />
-                        </div>
-                    </h:form>
-                </div>
-            </div>
-        </div>
+        
+        <h:form style="margin-top: 200px; margin-left: 500px;">
+            <p:inputText autocomplete="false" type="text" id="username" placeholder="Username" value="#{authController.username}"/>
+             <br/><br/>
+             <p:inputText type="password" id="password" placeholder="Password" />
+             <br/><br/>
+             <p:commandButton value="Login" action="#{authController.login()}"/>
+        </h:form>
     </ui:define>
 </ui:composition>
