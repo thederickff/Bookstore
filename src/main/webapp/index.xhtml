@@ -8,12 +8,22 @@
 
     <ui:define name="content">
         
-        <h:form style="margin-top: 200px; margin-left: 500px;">
+        <!--<h:form style="margin-top: 200px; margin-left: 500px;">
             <p:inputText autocomplete="false" type="text" id="username" placeholder="Username" value="#{authController.username}"/>
              <br/><br/>
              <p:inputText type="password" id="password" placeholder="Password" />
              <br/><br/>
-             <p:commandButton value="Login" action="#{authController.login()}"/>
-        </h:form>
+             <p:commandButton value="Login" action="#{authController.login()}" ajax="false" />
+            
+        </h:form>-->
+        <form method="POST" action="/j_security_check"  style="margin-top: 200px; margin-left: 500px;">
+            <label>Username: </label>
+            <input type="text" id="username" name="username"/>
+            <br/><br/>
+            <label>Password: </label>
+            <input type="password" id="password" name="password"/>
+            <br/><br/>
+            <input type="submit" value="Login" />
+        </form>
     </ui:define>
 </ui:composition>

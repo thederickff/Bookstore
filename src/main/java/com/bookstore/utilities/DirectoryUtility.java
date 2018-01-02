@@ -18,6 +18,14 @@ public class DirectoryUtility {
         return create(file, dir);
     }
     
+    public static String ROLE_FILE()
+    {
+        String dir = HOME_DIR + "/security/";
+        String file = dir + "role.data";
+        
+        return create(file, dir);
+    }
+    
     private static String create(String file, String dir)
     {
         FileUtility.createDirectory(HOME_DIR, dir);

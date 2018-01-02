@@ -31,7 +31,7 @@ public class AuthController {
         HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
         HttpServletResponse response = (HttpServletResponse) context.getExternalContext().getResponse();
         // get requested dispatcher
-        RequestDispatcher dispatcher = request.getRequestDispatcher("");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/index.xhtml");
         // forward this request and response to the requested dispatcher
         dispatcher.forward(request, response);
         // end the context
